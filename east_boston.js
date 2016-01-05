@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "078ce1f88c3d3fed7259"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "a36424da9005bd2350af"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -8036,7 +8036,37 @@
 
 	var _east_boston_evictions2 = _interopRequireDefault(_east_boston_evictions);
 
+	var _example_eviction_content = __webpack_require__(358);
+
+	var _example_eviction_content2 = _interopRequireDefault(_example_eviction_content);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var _iteratorNormalCompletion = true;
+	var _didIteratorError = false;
+	var _iteratorError = undefined;
+
+	try {
+
+	  for (var _iterator = _east_boston_evictions2.default[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	    var eviction = _step.value;
+
+	    eviction.content = _example_eviction_content2.default;
+	  }
+	} catch (err) {
+	  _didIteratorError = true;
+	  _iteratorError = err;
+	} finally {
+	  try {
+	    if (!_iteratorNormalCompletion && _iterator.return) {
+	      _iterator.return();
+	    }
+	  } finally {
+	    if (_didIteratorError) {
+	      throw _iteratorError;
+	    }
+	  }
+	}
 
 	(0, _reactDom.render)(_react2.default.createElement(_eviction_map2.default, {
 	  position: [42.37, -71.03],
@@ -42710,6 +42740,27 @@
 	exports.default = eastBostonEvictions;
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(354); if (makeExportsHot(module, __webpack_require__(139))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "east_boston_evictions.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
+
+/***/ },
+/* 358 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(77), RootInstanceProvider = __webpack_require__(85), ReactMount = __webpack_require__(87), React = __webpack_require__(139); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var evictionContent = {
+	  imageURL: "https://scontent-lga3-1.xx.fbcdn.net/hphotos-xfp1/t31.0-0/p180x540/11889982_10153539563424161_8634583050576839373_o.jpg",
+	  videoURL: "https://www.youtube.com/watch?v=uo6IXuESXYU&list=PLStYO1F2VYmR-JBl2La3LZLgULEDD4V80&index=8",
+	  narrative: "Before the dramatic wall collapse of 173, 175 and 177 Maverick St. on\nSaturday which displaced 30 East Boston residents, if you walked into\nHoober Alvarez’ apartment and looked up, you would be able to see the\nupstairs neighbor’s floor through a 5 foot long hole in the ceiling. In\nthis same building, families went without heat, water or electricity during\nthe coldest months of last winter without response from their landlord.\n\nHowever, when the landlord decided to give rent increases to all of the\ntenants in these buildings (in one case, as high as a $1,000 increase),\nresidents had had enough. They used their legal rights to fight for better\nbuilding conditions and to try to negotiate a long-term lease with\nreasonable rent increases.\n" };
+
+	exports.default = evictionContent;
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(354); if (makeExportsHot(module, __webpack_require__(139))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "example_eviction_content.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
 
 /***/ }
