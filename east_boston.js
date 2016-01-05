@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "a36424da9005bd2350af"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "dcdceaca9a44ab01a9b0"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -42581,7 +42581,30 @@
 	      return _react2.default.createElement(
 	        "div",
 	        { className: "eviction-popup" },
-	        this.props.eviction.location
+	        _react2.default.createElement(
+	          "h3",
+	          null,
+	          this.props.eviction.location
+	        ),
+	        this.renderImage(),
+	        this.renderNarrative()
+	      );
+	    }
+	  }, {
+	    key: "renderImage",
+	    value: function renderImage() {
+	      return _react2.default.createElement("img", {
+	        src: this.props.eviction.content.imageURL,
+	        width: "300px"
+	      });
+	    }
+	  }, {
+	    key: "renderNarrative",
+	    value: function renderNarrative() {
+	      return _react2.default.createElement(
+	        "p",
+	        null,
+	        this.props.eviction.content.narrative
 	      );
 	    }
 	  }]);
