@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "dd9ffb720e6650e4b99f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c853a37226e0a69cbf3a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -8087,12 +8087,6 @@
 	  associations: _east_boston_tenant_associations2.default });
 
 	(0, _reactDom.render)(tenantAssociationMap, document.getElementById('map'));
-
-	// render((
-	//   <EvictionMap
-	//     position={[42.37, -71.03]}
-	//     zoom={14}
-	//     evictions={eastBostonEvictions} />), document.getElementById('map'));
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(354); if (makeExportsHot(module, __webpack_require__(139))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "map.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
