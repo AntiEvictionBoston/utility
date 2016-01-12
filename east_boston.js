@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "dcdceaca9a44ab01a9b0"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "dd9ffb720e6650e4b99f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -8032,13 +8032,21 @@
 
 	var _eviction_map2 = _interopRequireDefault(_eviction_map);
 
-	var _east_boston_evictions = __webpack_require__(357);
+	var _tenant_association_map = __webpack_require__(357);
+
+	var _tenant_association_map2 = _interopRequireDefault(_tenant_association_map);
+
+	var _east_boston_evictions = __webpack_require__(359);
 
 	var _east_boston_evictions2 = _interopRequireDefault(_east_boston_evictions);
 
-	var _example_eviction_content = __webpack_require__(358);
+	var _example_eviction_content = __webpack_require__(360);
 
 	var _example_eviction_content2 = _interopRequireDefault(_example_eviction_content);
+
+	var _east_boston_tenant_associations = __webpack_require__(361);
+
+	var _east_boston_tenant_associations2 = _interopRequireDefault(_east_boston_tenant_associations);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8068,10 +8076,23 @@
 	  }
 	}
 
-	(0, _reactDom.render)(_react2.default.createElement(_eviction_map2.default, {
+	var basicFakeDataMap = _react2.default.createElement(_eviction_map2.default, {
 	  position: [42.37, -71.03],
 	  zoom: 14,
-	  evictions: _east_boston_evictions2.default }), document.getElementById('map'));
+	  evictions: _east_boston_evictions2.default });
+
+	var tenantAssociationMap = _react2.default.createElement(_tenant_association_map2.default, {
+	  position: [42.37, -71.03],
+	  zoom: 14,
+	  associations: _east_boston_tenant_associations2.default });
+
+	(0, _reactDom.render)(tenantAssociationMap, document.getElementById('map'));
+
+	// render((
+	//   <EvictionMap
+	//     position={[42.37, -71.03]}
+	//     zoom={14}
+	//     evictions={eastBostonEvictions} />), document.getElementById('map'));
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(354); if (makeExportsHot(module, __webpack_require__(139))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "map.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
@@ -28017,10 +28038,10 @@
 	var EvictionMap = (function (_React$Component) {
 	  _inherits(EvictionMap, _React$Component);
 
-	  function EvictionMap(options) {
+	  function EvictionMap(props) {
 	    _classCallCheck(this, EvictionMap);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(EvictionMap).call(this, options));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(EvictionMap).call(this, props));
 	  }
 
 	  _createClass(EvictionMap, [{
@@ -42755,6 +42776,195 @@
 
 	"use strict";
 
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(139);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactLeaflet = __webpack_require__(245);
+
+	var _tenant_association_popup = __webpack_require__(358);
+
+	var _tenant_association_popup2 = _interopRequireDefault(_tenant_association_popup);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var TenantAssociationMap = (function (_React$Component) {
+	  _inherits(TenantAssociationMap, _React$Component);
+
+	  function TenantAssociationMap(props) {
+	    _classCallCheck(this, TenantAssociationMap);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(TenantAssociationMap).call(this, props));
+	  }
+
+	  _createClass(TenantAssociationMap, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _reactLeaflet.Map,
+	        { center: this.props.position, zoom: this.props.zoom },
+	        _react2.default.createElement(_reactLeaflet.TileLayer, {
+	          url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+	          attribution: "© <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors, © <a href=\"http://cartodb.com/attributions\">CartoDB</a>"
+	        }),
+	        this.renderAssociations()
+	      );
+	    }
+	  }, {
+	    key: "renderAssociations",
+	    value: function renderAssociations() {
+	      var _this2 = this;
+
+	      var markers = [];
+	      this.props.associations.forEach(function (association, index) {
+	        return markers.push(_react2.default.createElement(
+	          _reactLeaflet.Marker,
+	          {
+	            map: _this2.props.map,
+	            position: [association.Latitude, association.Longitude],
+	            key: index },
+	          _react2.default.createElement(
+	            _reactLeaflet.Popup,
+	            null,
+	            _react2.default.createElement(_tenant_association_popup2.default, { association: association })
+	          )
+	        ));
+	      });
+	      return markers;
+	    }
+	  }]);
+
+	  return TenantAssociationMap;
+	})(_react2.default.Component);
+
+	TenantAssociationMap.propTypes = {
+	  position: _react2.default.PropTypes.array.isRequired,
+	  zoom: _react2.default.PropTypes.number.isRequired,
+	  associations: _react2.default.PropTypes.array.isRequired
+	};
+	exports.default = TenantAssociationMap;
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(354); if (makeExportsHot(module, __webpack_require__(139))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "tenant_association_map.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
+
+/***/ },
+/* 358 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(77), RootInstanceProvider = __webpack_require__(85), ReactMount = __webpack_require__(87), React = __webpack_require__(139); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	"use strict";
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(139);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var TenantPopup = (function (_React$Component) {
+	  _inherits(TenantPopup, _React$Component);
+
+	  function TenantPopup() {
+	    _classCallCheck(this, TenantPopup);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(TenantPopup).apply(this, arguments));
+	  }
+
+	  _createClass(TenantPopup, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "tenant-association-popup" },
+	        _react2.default.createElement(
+	          "h2",
+	          null,
+	          this.props.association.address
+	        ),
+	        _react2.default.createElement(
+	          "h3",
+	          null,
+	          "Owner: ",
+	          this.props.association.owner
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          null,
+	          this.renderImages()
+	        ),
+	        this.renderVideo()
+	      );
+	    }
+	  }, {
+	    key: "renderImages",
+	    value: function renderImages() {
+	      var images = [];
+	      this.props.association.images.forEach(function (image, index) {
+	        return images.push(_react2.default.createElement("img", {
+	          width: "300px",
+	          src: image,
+	          key: index }));
+	      });
+	      return images;
+	    }
+	  }, {
+	    key: "renderVideo",
+	    value: function renderVideo() {
+	      if (this.props.association.video) {
+	        return _react2.default.createElement(
+	          "a",
+	          {
+	            href: this.props.association.video,
+	            target: "_blank" },
+	          "A video about the struggle at the this address."
+	        );
+	      }
+	    }
+	  }]);
+
+	  return TenantPopup;
+	})(_react2.default.Component);
+
+	TenantPopup.propTypes = {
+	  association: _react2.default.PropTypes.object.isRequired
+	};
+	exports.default = TenantPopup;
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(354); if (makeExportsHot(module, __webpack_require__(139))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "tenant_association_popup.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
+
+/***/ },
+/* 359 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(77), RootInstanceProvider = __webpack_require__(85), ReactMount = __webpack_require__(87), React = __webpack_require__(139); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	"use strict";
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
@@ -42766,7 +42976,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
 
 /***/ },
-/* 358 */
+/* 360 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(77), RootInstanceProvider = __webpack_require__(85), ReactMount = __webpack_require__(87), React = __webpack_require__(139); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -42785,6 +42995,190 @@
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(354); if (makeExportsHot(module, __webpack_require__(139))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "example_eviction_content.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
+
+/***/ },
+/* 361 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(77), RootInstanceProvider = __webpack_require__(85), ReactMount = __webpack_require__(87), React = __webpack_require__(139); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _images = __webpack_require__(362);
+
+	var _images2 = _interopRequireDefault(_images);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var tenantAssociations = [{
+	  address: "173-177 Maverick St.",
+	  owner: "Maverick Street Realty",
+	  units: 7,
+	  Latitude: 42.369521,
+	  Longitude: -71.037244,
+	  images: [_images2.default.maverickStreet173],
+	  video: "https://www.youtube.com/watch?v=uinevl-LnTI"
+	}, {
+	  address: "142 Gove St.",
+	  owner: "RJ Leyden LLC",
+	  units: 5,
+	  Latitude: 42.370093,
+	  Longitude: -71.033843,
+	  images: [_images2.default.goveStreetMailbox, _images2.default.goveStreet]
+	}, {
+	  address: "64 Lubec St.",
+	  owner: "Hodara",
+	  units: 4,
+	  Latitude: 42.370724,
+	  Longitude: -71.033808,
+	  images: [_images2.default.lubecStreet]
+	}, {
+	  address: "219 Maverick St.",
+	  owner: "Hodara",
+	  units: 2,
+	  Latitude: 42.368669,
+	  Longitude: -71.035611,
+	  images: [_images2.default.maverickStreet219]
+	}, {
+	  address: "220 Saratoga St.",
+	  owner: "Hodara",
+	  units: 1,
+	  Latitude: 42.378119,
+	  Longitude: -71.033425,
+	  images: [_images2.default.saratogaPorch, _images2.default.saratogaStreet]
+	}, {
+	  address: "25 Chelsea St.",
+	  owner: "Newman",
+	  units: 3,
+	  Latitude: 42.370697,
+	  Longitude: -71.037756,
+	  images: [_images2.default.chelseaStreet25]
+	}, {
+	  address: "1022 Bennington St.",
+	  owner: "EB Ventures",
+	  units: 4,
+	  Latitude: 42.387102,
+	  Longitude: -71.006143,
+	  images: [_images2.default.benningtonSt]
+	}, { address: "354 Chelsea St.",
+	  owner: "Concepcion Perez",
+	  units: 2,
+	  Latitude: 42.378097,
+	  Longitude: -71.029607,
+	  images: [_images2.default.chelseaStreet354]
+	}, {
+	  address: "107-11 Brooks St.",
+	  owner: "David Gradus",
+	  units: 1,
+	  Latitude: 42.377834,
+	  Longitude: -71.034292,
+	  images: [_images2.default.brooksSt]
+	}];
+
+	exports.default = tenantAssociations;
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(354); if (makeExportsHot(module, __webpack_require__(139))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "east_boston_tenant_associations.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
+
+/***/ },
+/* 362 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(77), RootInstanceProvider = __webpack_require__(85), ReactMount = __webpack_require__(87), React = __webpack_require__(139); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var photos = {
+	  benningtonSt: __webpack_require__(363),
+	  brooksSt: __webpack_require__(364),
+	  maverickStreet219: __webpack_require__(365),
+	  maverickStreet173: __webpack_require__(366),
+	  saratogaPorch: __webpack_require__(367),
+	  saratogaStreet: __webpack_require__(368),
+	  chelseaStreet25: __webpack_require__(369),
+	  chelseaStreet354: __webpack_require__(370),
+	  lubecStreet: __webpack_require__(371),
+	  goveStreetMailbox: __webpack_require__(372),
+	  goveStreet: __webpack_require__(373)
+	};
+
+	exports.default = photos;
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(354); if (makeExportsHot(module, __webpack_require__(139))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "images.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
+
+/***/ },
+/* 363 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "5233099309b4f598f768549cde700aff.png";
+
+/***/ },
+/* 364 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "a91c02fa5722a92a734c21cd6c816c67.png";
+
+/***/ },
+/* 365 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "ff62785e35a181cbbea3fef0000a32a9.png";
+
+/***/ },
+/* 366 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "4a5c0753a57f7ed5fc41b9c7756dfeab.png";
+
+/***/ },
+/* 367 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "bf35e560bac018387db9b77956d71740.png";
+
+/***/ },
+/* 368 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "ea4843c4e7a08d20f0cef8cd4a631749.png";
+
+/***/ },
+/* 369 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "ee01ca604b2fe682f17881f692e28608.png";
+
+/***/ },
+/* 370 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "1423273ca1ef64425248169c65c5d87d.png";
+
+/***/ },
+/* 371 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "1569e9985dda84da5155d9aa185272c8.png";
+
+/***/ },
+/* 372 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "63a251834fa42e2703790fbbf186646c.png";
+
+/***/ },
+/* 373 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "83830cb19a58774227413fb62d8b51b2.png";
 
 /***/ }
 /******/ ]);
